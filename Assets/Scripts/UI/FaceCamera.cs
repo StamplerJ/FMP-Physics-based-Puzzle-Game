@@ -5,7 +5,7 @@ using UnityEngine;
 /// </summary>
 public class FaceCamera : MonoBehaviour
 {
-    private Camera camera;
+    private new Camera camera;
 
     void Start()
     {

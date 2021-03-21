@@ -6,7 +6,6 @@ public class Coin : MonoBehaviour
     {
         if (other.tag.Equals(Tags.Player))
         {
-            print("Coin picked up");
             LevelTracker.Instance.OnCoinPickup();
             PlayPickupAnimation();
         }

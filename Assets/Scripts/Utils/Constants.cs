@@ -3,6 +3,7 @@ public static class Names
     public static readonly string Grid = "Grid";
     public static readonly string Floor = "Floor";
     public static readonly string CoinText = "CoinText";
+    public static readonly string OnObjectCanvas = "OnObjectCanvas";
 }
 
 public static class Tags

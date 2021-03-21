@@ -275,6 +275,8 @@ GameObject:
   - component: {fileID: 4319182469745600209}
   - component: {fileID: 6602569832343501960}
   - component: {fileID: 9205709790140346106}
+  - component: {fileID: 7930694257728367366}
+  - component: {fileID: 6118243130717417969}
   m_Layer: 0
   m_Name: Goal
   m_TagString: Untagged
@@ -337,7 +339,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isMovable: 1
   velocity: 50
-  offset: {x: 0, y: 0.05, z: 0}
+  offset: {x: 0, y: -0.45, z: 0}
+--- !u!114 &7930694257728367366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2715130741901105945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58736fc7390d108468bbad07c2069f93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6118243130717417969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2715130741901105945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 4
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &2715130742638064948
 GameObject:
   m_ObjectHideFlags: 0
