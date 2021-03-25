@@ -1,6 +1,6 @@
-using System;
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class GridGenerator : MonoBehaviour
 {
     [SerializeField] private int width = 10;

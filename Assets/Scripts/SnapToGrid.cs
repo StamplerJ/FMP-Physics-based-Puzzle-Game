@@ -17,6 +17,8 @@ public class SnapToGrid : MonoBehaviour
     private void Awake()
     {
         grid = GameObject.Find(Names.Grid).GetComponent<GridGenerator>();
+
+        snapPosition = transform.position;
     }
 
     private void Update()
@@ -41,6 +43,7 @@ public class SnapToGrid : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             isSelected = false;
+            transform.position = snapPosition;
         }
 
         if (isSelected)
