@@ -4,16 +4,14 @@ using UnityEngine;
 public class Redirector : MonoBehaviour
 {
     [SerializeField] private Vector3 direction;
-
-    private void Start()
-    {
-        direction = transform.rotation * direction;
-    }
+    [SerializeField] private GameObject mesh;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag.Equals(Tags.Player))
         {
+            direction = mesh.transform.rotation * direction;
+            
             TurnRocket(other.gameObject);
         }
     }
