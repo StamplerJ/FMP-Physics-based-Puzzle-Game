@@ -1,23 +1,23 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
+using Grid;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class CounterUI : MonoBehaviour
+public class CounterUI : MonoBehaviour, ICounterListener
 {
     [SerializeField] private Button minus, plus;
     [SerializeField] private Text amount;
-
-    private int wallCounter;
+    
+    private ICounterListener listener;
+    
+    private int counter = 0;
 
     public void OnMinusClick()
     {
-        if (wallCounter > 0)
+        if (counter > 0)
         {
-            wallCounter--;
+            listener.OnMinusClick();
+            counter--;
         }
         
         UpdateAmount();
@@ -25,12 +25,19 @@ public class CounterUI : MonoBehaviour
 
     public void OnPlusClick()
     {
-        wallCounter++;
+        listener.OnPlusClick();
+        counter++;
         UpdateAmount();
     }
 
     private void UpdateAmount()
     {
-        amount.text = wallCounter.ToString();
+        amount.text = counter.ToString();
+    }
+    
+    public ICounterListener Listener
+    {
+        get => listener;
+        set => listener = value;
     }
 }

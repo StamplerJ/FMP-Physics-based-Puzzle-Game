@@ -107,7 +107,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f84611160b9852468da372b103abb6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wallPrefab: {fileID: 7055181065841843248, guid: a3e490f1acf7aaa49ae810b2cebb8c7e, type: 3}
   walls: []
+  counterUI: {fileID: 1931928352545241566}
 --- !u!1 &7659657665782772291
 GameObject:
   m_ObjectHideFlags: 0
@@ -392,3 +394,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ccff9bc8f4cbc164bb855aba6924f28e, type: 3}
+--- !u!114 &1931928352545241566 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7146904219678390076, guid: ccff9bc8f4cbc164bb855aba6924f28e, type: 3}
+  m_PrefabInstance: {fileID: 8782425114653052642}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f473aefde77179647bcb9c590b6c7689, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

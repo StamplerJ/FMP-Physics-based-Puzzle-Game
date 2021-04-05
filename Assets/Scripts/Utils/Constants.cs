@@ -4,6 +4,7 @@ public static class Names
     public static readonly string Floor = "Floor";
     public static readonly string CoinText = "CoinText";
     public static readonly string OnObjectCanvas = "OnObjectCanvas";
+    public static readonly string Mesh = "Mesh";
 }
 
 public static class Tags

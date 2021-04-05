@@ -1,3 +1,5 @@
+using System;
+using Grid;
 using UnityEngine;
 
 [ExecuteInEditMode]
@@ -6,26 +8,38 @@ public class GridGenerator : MonoBehaviour
     [SerializeField] private int width = 10;
     [SerializeField] private int height = 3;
     [SerializeField] private int depth = 10;
-
+    
+    private int xOff, zOff;
+    
     [SerializeField] private float tileSize = 1f;
     
-    private Vector3[] points;
+    private GameObject[,,] tiles;
 
     [SerializeField] private GameObject floor;
     [SerializeField] private GameObject floorTile;
     [SerializeField] private Transform nodes;
 
+    private void Awake()
+    {
+        ResetNodes();
+    }
+
     private void Start()
     {
         floor.transform.localScale = new Vector3(width * tileSize, 0.01f, depth * tileSize);
+
+        xOff = width / 2;
+        zOff = depth / 2;
+
+        tiles = new GameObject[width, height, depth];
         
         GenerateGrid();
     }
 
     private void GenerateGrid()
-    {        
-        points = new Vector3[width * height * depth];
-
+    {
+        Vector3[,,] points = new Vector3[width, height, depth];
+        
         for (int i = 0, y = 0; y < height; y++)
         {
             for (int z = -depth / 2; z < depth / 2; z++) 
@@ -33,15 +47,19 @@ public class GridGenerator : MonoBehaviour
                 for (int x = -width / 2; x < width / 2; x++, i++) 
                 {
                     Vector3 offset = transform.position;
+        
+                    int xIndex = x + xOff;
+                    int zIndex = z + zOff;
                     
-                    points[i] = new Vector3(
+                    points[xIndex, y, zIndex] = new Vector3(
                         x * tileSize + tileSize / 2f + offset.x, 
                         y * tileSize + offset.y, 
                         z * tileSize + tileSize / 2f + offset.z);
                     
                     if (y == 0)
                     {
-                        Instantiate(floorTile, points[i], Quaternion.identity, nodes);   
+                        tiles[xIndex, y, zIndex] = Instantiate(floorTile, points[xIndex, y, zIndex], Quaternion.identity, nodes);
+                        print(i);
                     }
                 }
             }
@@ -67,15 +85,94 @@ public class GridGenerator : MonoBehaviour
         return result;
     }
 
+    public GameObject GetTileOnGrid(Vector3 origin, CardinalDirection direction)
+    {
+        GameObject tile = null;
+
+        int x = 0;
+        int z = 0;
+        
+        if(direction == CardinalDirection.East ||
+           direction == CardinalDirection.NorthEast ||
+           direction == CardinalDirection.SouthEast)
+        {
+            x = 1;
+        }
+        else if(direction == CardinalDirection.West ||
+           direction == CardinalDirection.NorthWest ||
+           direction == CardinalDirection.SouthWest)
+        {
+            x = -1;
+        }
+        
+        if(direction == CardinalDirection.North ||
+           direction == CardinalDirection.NorthEast ||
+           direction == CardinalDirection.NorthWest)
+        {
+            z = 1;
+        }
+        else if(direction == CardinalDirection.South ||
+                direction == CardinalDirection.SouthEast ||
+                direction == CardinalDirection.SouthWest)
+        {
+            z = -1;
+        }
+
+        Vector3 tilePosition = origin + new Vector3(x * tileSize, 0, z * tileSize);
+        if (IsOnGrid(tilePosition))
+        {
+            Vector3Int indices = PositionToIndicies(tilePosition);
+            tile = tiles[indices.x, indices.y, indices.z];
+        }
+        
+        return tile;
+    }
+    
+    public bool IsOnGrid(Vector3 position)
+    {
+        Vector3Int indices = PositionToIndicies(position);
+
+        try
+        {
+            print(indices);
+            return true;
+        }
+        catch (Exception e)
+        {
+            print("Position: " + position + " not on grid");
+            return false;
+        }
+    }
+
+    private void ResetNodes()
+    {
+        for (int i = 0; i < nodes.childCount; i++)
+        {
+            Destroy(nodes.GetChild(i).gameObject);
+        }
+    }
+
+    private Vector3Int PositionToIndicies(Vector3 position)
+    {
+        position -= transform.position;
+    
+        int xCount = Mathf.FloorToInt(position.x / tileSize) + xOff;
+        int yCount = Mathf.FloorToInt(position.y / tileSize);
+        int zCount = Mathf.FloorToInt(position.z / tileSize) + zOff;
+
+        return new Vector3Int(xCount, yCount, zCount);
+    }
+
     private void OnDrawGizmos ()
     {
-        if (points == null || points.Length <= 0)
+        if (tiles == null || tiles.Length <= 0)
             return;
         
         Gizmos.color = Color.black;
-        foreach (Vector3 point in points)
+        foreach (GameObject tile in tiles)
         {
-            Gizmos.DrawSphere(point, 0.1f);
+            if (tile != null)
+                Gizmos.DrawSphere(tile.transform.position, 0.1f);
         }
     }
 }
