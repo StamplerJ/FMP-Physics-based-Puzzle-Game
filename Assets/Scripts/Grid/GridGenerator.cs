@@ -1,8 +1,8 @@
 using System;
 using Grid;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
-[ExecuteInEditMode]
 public class GridGenerator : MonoBehaviour
 {
     [SerializeField] private int width = 10;
@@ -19,11 +19,6 @@ public class GridGenerator : MonoBehaviour
     [SerializeField] private GameObject floorTile;
     [SerializeField] private Transform nodes;
 
-    private void Awake()
-    {
-        ResetNodes();
-    }
-
     private void Start()
     {
         floor.transform.localScale = new Vector3(width * tileSize, 0.01f, depth * tileSize);
@@ -33,6 +28,7 @@ public class GridGenerator : MonoBehaviour
 
         tiles = new GameObject[width, height, depth];
         
+        ResetNodes();
         GenerateGrid();
     }
 
@@ -59,7 +55,6 @@ public class GridGenerator : MonoBehaviour
                     if (y == 0)
                     {
                         tiles[xIndex, y, zIndex] = Instantiate(floorTile, points[xIndex, y, zIndex], Quaternion.identity, nodes);
-                        print(i);
                     }
                 }
             }
@@ -85,7 +80,7 @@ public class GridGenerator : MonoBehaviour
         return result;
     }
 
-    public GameObject GetTileOnGrid(Vector3 origin, CardinalDirection direction)
+    public GameObject GetNeighbourTileOnGrid(Vector3 origin, CardinalDirection direction)
     {
         GameObject tile = null;
 
@@ -127,6 +122,20 @@ public class GridGenerator : MonoBehaviour
         
         return tile;
     }
+
+    public GameObject GetNextNeighbourTileOnGrid(Vector3 origin)
+    {
+        for (int i = 0; i < (int) CardinalDirection.Length; i++)
+        {
+            GameObject tile = GetNeighbourTileOnGrid(origin, (CardinalDirection) i);
+            if (tile != null)
+            {
+                return tile;
+            }
+        }
+        
+        return null;
+    }
     
     public bool IsOnGrid(Vector3 position)
     {
@@ -134,12 +143,11 @@ public class GridGenerator : MonoBehaviour
 
         try
         {
-            print(indices);
-            return true;
+            GameObject tile = tiles[indices.x, indices.y, indices.z];
+            return tile != null;
         }
-        catch (Exception e)
+        catch (Exception)
         {
-            print("Position: " + position + " not on grid");
             return false;
         }
     }

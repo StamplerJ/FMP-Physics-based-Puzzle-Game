@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using Grid;
 using UnityEngine;
@@ -13,19 +12,18 @@ public class Lever : MonoBehaviour, ICounterListener
     private GameObject mesh;
 
     private bool isOn;
-    
+
     private void Awake()
     {
         grid = GameObject.Find(Names.Grid).GetComponent<GridGenerator>(); // TODO: Can this be a singleton?
         mesh = transform.Find(Names.Mesh).gameObject;
         counterUI.Listener = this;
     }
-    
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag.Equals(Tags.Player))
         {
-            print("Trigger walls");
             TriggerWalls();
         }
     }
@@ -40,15 +38,28 @@ public class Lever : MonoBehaviour, ICounterListener
         }
     }
 
-    private void AddWall()
+    /// <summary>
+    /// Adds a wall around the lever
+    /// </summary>
+    /// <returns>True if adding a wall was successful else false</returns>
+    private bool AddWall()
     {
-        GameObject tile = grid.GetTileOnGrid(mesh.transform.position, CardinalDirection.SouthEast);
-
-        if (tile != null)
+        for (int i = 0; i < (int) CardinalDirection.Length; i++)
         {
-            GameObject wall = Instantiate(wallPrefab, tile.transform.position, Quaternion.identity);
-            walls.Add(wall);
+            GameObject tile = grid.GetNeighbourTileOnGrid(mesh.transform.position, (CardinalDirection) i);
+            if (tile != null) // Check if tile is on grid
+            {
+                if (!IsCollidingWithWall(tile))
+                {
+                    GameObject wall = Instantiate(wallPrefab, tile.transform.position, Quaternion.identity);
+                    SelectedItemsTracker.Instance.AddSelectable(wall.GetComponent<Selectable>());
+                    walls.Add(wall);
+                    return true;
+                }
+            }
         }
+
+        return false;
     }
 
     private void RemoveWall()
@@ -59,17 +70,38 @@ public class Lever : MonoBehaviour, ICounterListener
             walls.RemoveAt(walls.Count - 1);
         }
     }
-    
+
     public void OnPlusClick()
     {
-        AddWall();
+        bool wasSuccessful = AddWall();
+
+        if (!wasSuccessful)
+        {
+            counterUI.Counter--;
+        }
     }
 
     public void OnMinusClick()
     {
         RemoveWall();
     }
-    
+
+    private bool IsCollidingWithWall(GameObject tile)
+    {
+        RaycastHit hit;
+        LayerMask mask = LayerMask.GetMask(Names.Wall);
+        
+        if (Physics.Raycast(tile.transform.position + Vector3.down, Vector3.up, out hit, 2f, mask))
+        {
+            if (hit.collider.name.Contains(Names.Wall))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public bool IsOn
     {
         get => isOn;

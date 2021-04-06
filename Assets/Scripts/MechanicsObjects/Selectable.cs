@@ -33,15 +33,15 @@ public class Selectable : MonoBehaviour
     
     public void UpdateSelection(bool isSelected)
     {
-        if (onObjectCanvas == null)
-            return;
-        
-        onObjectCanvas.SetActive(isSelected);
-
         if (outline != null)
         {
             outline.enabled = isSelected;
         }
+        
+        if (onObjectCanvas == null)
+            return;
+        
+        onObjectCanvas.SetActive(isSelected);
     }
 
     public bool IsSelected => isSelected;

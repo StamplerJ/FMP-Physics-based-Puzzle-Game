@@ -2,9 +2,14 @@
 {
     public enum CardinalDirection
     {
-        North, NorthEast, NorthWest,
+        SouthEast = 0,
+        South,
+        SouthWest,
+        West,
+        NorthWest,
+        North,
+        NorthEast,
         East,
-        South, SouthEast,  SouthWest,
-        West, 
+        Length
     }
 }

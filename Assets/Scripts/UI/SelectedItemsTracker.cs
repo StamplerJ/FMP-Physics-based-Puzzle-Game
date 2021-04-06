@@ -1,12 +1,13 @@
+using System.Collections.Generic;
 using System.Linq;
 
 public class SelectedItemsTracker : Singleton<SelectedItemsTracker>
 {
-    private Selectable[] selectables;
+    private List<Selectable> selectables;
     
     void Start()
     {
-        selectables = FindObjectsOfType<Selectable>();
+        selectables = FindObjectsOfType<Selectable>().ToList();
         
         // Default all to false
         UpdateSelectedItems(null);
@@ -23,5 +24,11 @@ public class SelectedItemsTracker : Singleton<SelectedItemsTracker>
     public Selectable GetSelectable()
     {
         return selectables.FirstOrDefault(item => item.IsSelected);
+    }
+
+    public void AddSelectable(Selectable selectable)
+    {
+        selectables.Add(selectable);
+        selectable.UpdateSelection(false);
     }
 }
