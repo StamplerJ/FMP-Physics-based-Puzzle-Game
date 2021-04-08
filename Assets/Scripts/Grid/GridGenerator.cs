@@ -19,7 +19,7 @@ public class GridGenerator : MonoBehaviour
     [SerializeField] private GameObject floorTile;
     [SerializeField] private Transform nodes;
 
-    private void Start()
+    private void Awake()
     {
         floor.transform.localScale = new Vector3(width * tileSize, 0.01f, depth * tileSize);
 

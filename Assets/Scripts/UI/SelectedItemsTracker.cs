@@ -4,11 +4,16 @@ using System.Linq;
 public class SelectedItemsTracker : Singleton<SelectedItemsTracker>
 {
     private List<Selectable> selectables;
-    
-    void Start()
+
+    public override void Awake()
     {
+        base.Awake();
+
         selectables = FindObjectsOfType<Selectable>().ToList();
-        
+    }
+
+    private void Start()
+    {
         // Default all to false
         UpdateSelectedItems(null);
     }

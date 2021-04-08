@@ -5,6 +5,7 @@ Shader "Custom/UV rotation"
         _MainTex ("Texture", 2D) = "white" {}
         _Angle ("Angle", Range(0,  4.0)) = 0.0
         _Color ("Color", Color) = (1,1,1,1)
+        _LaProportion("Proportion de couleur", float) = 0.5
     }
     SubShader
     {
@@ -46,14 +47,17 @@ Shader "Custom/UV rotation"
  
             sampler2D _MainTex;
             fixed4 _Color;
+            float _LaProportion;
             
             fixed4 frag(v2f i) : SV_Target
             {
-                fixed4 col = tex2D(_MainTex, i.uv);
-                col.rgb = _Color;
-                return col;
+                // fixed4 col = tex2D(_MainTex, i.uv);
+                // col.rgba = _Color;
+                // return col;
                 // Texel sampling
                 // return tex2D(_MainTex, i.uv);
+                fixed4 col = tex2D(_MainTex, i.uv);
+                return (1-_LaProportion)*col+_LaProportion*col*_Color;
             }
  
             ENDCG

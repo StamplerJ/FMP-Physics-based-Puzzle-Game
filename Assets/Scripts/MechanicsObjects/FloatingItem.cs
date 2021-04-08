@@ -11,7 +11,7 @@ public class FloatingItem : MonoBehaviour
 
     private void Start()
     {
-        startY = transform.position.y + 0.5f;
+        startY = transform.position.y;
         endY = startY + height;
     }
 

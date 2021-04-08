@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public static class Names
 {
     public static readonly string Grid = "Grid";
@@ -13,4 +15,10 @@ public static class Tags
     public static readonly string Player = "Player";
     public static readonly string Coin = "Coin";
     public static readonly string Stackable = "Stackable";
+}
+
+public static class Colors
+{
+    public static readonly Color Red = Color.red;
+    public static readonly Color Blue = Color.blue;
 }
