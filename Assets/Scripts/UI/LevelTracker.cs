@@ -13,7 +13,7 @@ public class LevelTracker : Singleton<LevelTracker>
     {
         base.Awake();
         
-        coinText = GameObject.Find(Names.CoinText).GetComponent<Text>();
+        coinText = GameObject.Find(Names.CoinText)?.GetComponent<Text>();
         coinMax = GameObject.FindGameObjectsWithTag(Tags.Coin).Length;
     }
 

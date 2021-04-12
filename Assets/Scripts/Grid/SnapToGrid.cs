@@ -93,9 +93,15 @@ public class SnapToGrid : MonoBehaviour
         return transform.position - offset;
     }
 
-    // private void OnDrawGizmos()
-    // {
-    //     Gizmos.color = Color.yellow;
-    //     Gizmos.DrawSphere(GetCenterPosition(), 0.5f);
-    // }
+    public bool IsSelected
+    {
+        get => isSelected;
+        set => isSelected = value;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawSphere(GetCenterPosition(), 0.5f);
+    }
 }
