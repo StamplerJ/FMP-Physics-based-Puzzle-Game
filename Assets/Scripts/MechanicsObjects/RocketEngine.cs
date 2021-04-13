@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RocketEngine : MonoBehaviour
+public class RocketEngine : MechanicBehaviour
 {
     private new Rigidbody rigidbody;
 
@@ -34,6 +34,16 @@ public class RocketEngine : MonoBehaviour
         return (front.transform.position - engine.transform.position).normalized;
     }
 
+    public override void OnEnterEditor()
+    {
+        //noop
+    }
+
+    public override void OnEnterPlayMode()
+    {
+        //noop
+    }
+    
     private void OnDrawGizmos()
     {
         Gizmos.DrawLine(front.transform.position, front.transform.position + GetDirection());

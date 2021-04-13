@@ -6,6 +6,7 @@ public static class Names
     public static readonly string Floor = "Floor";
     public static readonly string CoinText = "CoinText";
     public static readonly string OnObjectCanvas = "OnObjectCanvas";
+    public static readonly string InGameCanvas = "InGameCanvas";
     public static readonly string Viewport = "Viewport";
     public static readonly string Mesh = "Mesh";
     public static readonly string Wall = "Wall";

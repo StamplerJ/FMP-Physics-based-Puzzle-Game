@@ -189,7 +189,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isMovable: 1
   velocity: 50
-  offset: {x: 0.65, y: 0, z: 0}
+  offset: {x: 0.35, y: -0.55, z: 0}
 --- !u!114 &3940081485217343344
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: StartRamp
   m_EditorClassIdentifier: 
   type: 6
-  image: {fileID: 21300000, guid: 57a862389f3b46e46a5fa1a3f2458cdd, type: 3}
+  image: {fileID: 21300000, guid: df20af895fb69884fb2e9d7cf48292d9, type: 3}
   prefab: {fileID: 5318410981796929070, guid: 6c960e27299b88f408756a6f231265df, type: 3}

@@ -165,7 +165,7 @@ public class GridGenerator : MonoBehaviour
         position -= transform.position;
     
         int xCount = Mathf.FloorToInt(position.x / tileSize) + xOff;
-        int yCount = Mathf.FloorToInt(position.y / tileSize);
+        int yCount = 0; // TODO: Fix this if multiple layers are added: Mathf.FloorToInt(position.y / tileSize);
         int zCount = Mathf.FloorToInt(position.z / tileSize) + zOff;
 
         return new Vector3Int(xCount, yCount, zCount);

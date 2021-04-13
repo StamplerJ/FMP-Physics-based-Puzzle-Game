@@ -40,6 +40,13 @@ public class DragCreator : MonoBehaviour, IDragHandler, IEndDragHandler
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (objectInstance != null)
+        {
+            objectInstance.GetComponent<MechanicBehaviour>()?.OnEnterEditor();
+        
+            SelectedItemsTracker.Instance.AddSelectable(objectInstance.GetComponent<Selectable>(), true);
+        }
+        
         objectInstance = null;
         isInstantiated = false;
     }
@@ -48,6 +55,7 @@ public class DragCreator : MonoBehaviour, IDragHandler, IEndDragHandler
     {
         objectInstance = Instantiate(uiItem.Prefab, position, Quaternion.identity);
         objectInstance.GetComponent<SnapToGrid>().IsSelected = true;
+
         isInstantiated = true;
     }
 }

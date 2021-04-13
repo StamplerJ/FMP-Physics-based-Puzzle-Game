@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class Redirector : MonoBehaviour
+public class Redirector : MechanicBehaviour
 {
     [SerializeField] private Vector3 direction;
     [SerializeField] private GameObject mesh;
@@ -39,6 +39,16 @@ public class Redirector : MonoBehaviour
         dir.z = Math.Abs(dir.z) < 0.9f ? 0f : dir.z;
         
         rb.velocity = dir * velocity.magnitude;
+    }
+    
+    public override void OnEnterEditor()
+    {
+        //noop
+    }
+
+    public override void OnEnterPlayMode()
+    {
+        //noop
     }
     
     private void OnDrawGizmos()

@@ -560,7 +560,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3924360162875151355}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4dd6b055c1d3696439b68b92b938d24f, type: 3}
   m_Name: 
@@ -797,6 +797,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8057252461558794836}
     m_Modifications:
+    - target: {fileID: 991587945720979060, guid: 6dad5cda14d4f2e47ac0d0c6edb196df, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 5269719497685417697}
     - target: {fileID: 2548320448219962781, guid: 6dad5cda14d4f2e47ac0d0c6edb196df, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

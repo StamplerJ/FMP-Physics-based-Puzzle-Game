@@ -31,9 +31,10 @@ public class SelectedItemsTracker : Singleton<SelectedItemsTracker>
         return selectables.FirstOrDefault(item => item.IsSelected);
     }
 
-    public void AddSelectable(Selectable selectable)
+    public void AddSelectable(Selectable selectable, bool setSelected)
     {
         selectables.Add(selectable);
-        selectable.UpdateSelection(false);
+        selectable.UpdateSelection(setSelected);
+        UpdateSelectedItems(selectable);
     }
 }

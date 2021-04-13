@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Grid;
 using UnityEngine;
 
-public class Lever : MonoBehaviour, ICounterListener
+public class Lever : MechanicBehaviour, ICounterListener
 {
     [SerializeField] private CounterUI counterUI;
     [SerializeField] private GameObject wallPrefab;
@@ -52,7 +52,7 @@ public class Lever : MonoBehaviour, ICounterListener
                 if (!IsCollidingWithWall(tile))
                 {
                     GameObject wall = Instantiate(wallPrefab, tile.transform.position, Quaternion.identity);
-                    SelectedItemsTracker.Instance.AddSelectable(wall.GetComponent<Selectable>());
+                    SelectedItemsTracker.Instance.AddSelectable(wall.GetComponent<Selectable>(), false);
                     walls.Add(wall);
                     return true;
                 }
@@ -105,5 +105,15 @@ public class Lever : MonoBehaviour, ICounterListener
     public bool IsOn
     {
         get => isOn;
+    }
+
+    public override void OnEnterEditor()
+    {
+        //noop
+    }
+
+    public override void OnEnterPlayMode()
+    {
+        //noop
     }
 }

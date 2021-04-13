@@ -12,9 +12,12 @@ public class LevelTracker : Singleton<LevelTracker>
     public override void Awake()
     {
         base.Awake();
-        
-        coinText = GameObject.Find(Names.CoinText)?.GetComponent<Text>();
-        coinMax = GameObject.FindGameObjectsWithTag(Tags.Coin).Length;
+
+        if (GameObject.Find(Names.InGameCanvas))
+        {
+            coinText = GameObject.Find(Names.CoinText)?.GetComponent<Text>();
+            coinMax = GameObject.FindGameObjectsWithTag(Tags.Coin).Length;   
+        }
     }
 
     private void Start()
@@ -30,7 +33,10 @@ public class LevelTracker : Singleton<LevelTracker>
 
     private void UpdateCoinText()
     {
-        coinText.text = string.Format("Coins: {0}/{1}", coinCounter, coinMax);
+        if (coinText != null)
+        {
+            coinText.text = $"Coins: {coinCounter}/{coinMax}";   
+        }
     }
 
     public int CoinMax => coinMax;

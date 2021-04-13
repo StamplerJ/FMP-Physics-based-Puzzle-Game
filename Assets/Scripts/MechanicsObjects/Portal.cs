@@ -1,7 +1,7 @@
 using Grid;
 using UnityEngine;
 
-public class Portal : MonoBehaviour
+public class Portal : MechanicBehaviour
 {
     [SerializeField] private bool createOtherPortal;
 
@@ -19,14 +19,6 @@ public class Portal : MonoBehaviour
         mesh = transform.Find(Names.Mesh).gameObject;
         
         glowingTextureRotation = GetComponent<GlowingTextureRotation>();
-    }
-
-    private void Start()
-    {
-        if (createOtherPortal)
-        {
-            SetupPortals();
-        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -83,13 +75,28 @@ public class Portal : MonoBehaviour
                 Material temp = portal.transform.Find(Names.Mesh).GetComponent<MeshRenderer>().materials[0];
                 portal.transform.Find(Names.Mesh).GetComponent<MeshRenderer>().materials = new []{temp};
                 
-                SelectedItemsTracker.Instance.AddSelectable(portal.GetComponent<Selectable>());
+                SelectedItemsTracker.Instance.AddSelectable(portal.GetComponent<Selectable>(), false);
                 
                 return portal.GetComponent<Portal>();
             }
         }
 
         return null;
+    }
+    
+    public override void OnEnterEditor()
+    {
+        GetComponentInChildren<FloatingItem>().enabled = true;
+        
+        if (createOtherPortal)
+        {
+            SetupPortals();
+        }
+    }
+
+    public override void OnEnterPlayMode()
+    {
+        GetComponentInChildren<FloatingItem>().enabled = true;
     }
     
     public Portal OtherPortal

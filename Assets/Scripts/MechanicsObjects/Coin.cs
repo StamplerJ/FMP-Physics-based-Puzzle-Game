@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Coin : MonoBehaviour
+public class Coin : MechanicBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
@@ -15,5 +15,15 @@ public class Coin : MonoBehaviour
     {
         // TODO: Play pickup sound
         Destroy(gameObject, 0.1f);
+    }
+
+    public override void OnEnterEditor()
+    {
+        GetComponentInChildren<FloatingItem>().enabled = true;
+    }
+
+    public override void OnEnterPlayMode()
+    {
+        GetComponentInChildren<FloatingItem>().enabled = true;
     }
 }
