@@ -10,6 +10,7 @@ public class Portal : MechanicBehaviour
     
     private Portal otherPortal;
     private GlowingTextureRotation glowingTextureRotation;
+    private FloatingItem floatingItem;
 
     private bool canTeleport = true;
 
@@ -19,6 +20,7 @@ public class Portal : MechanicBehaviour
         mesh = transform.Find(Names.Mesh).gameObject;
         
         glowingTextureRotation = GetComponent<GlowingTextureRotation>();
+        floatingItem = GetComponentInChildren<FloatingItem>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -86,7 +88,7 @@ public class Portal : MechanicBehaviour
     
     public override void OnEnterEditor()
     {
-        GetComponentInChildren<FloatingItem>().enabled = true;
+        floatingItem.enabled = true;
         
         if (createOtherPortal)
         {
@@ -96,7 +98,7 @@ public class Portal : MechanicBehaviour
 
     public override void OnEnterPlayMode()
     {
-        GetComponentInChildren<FloatingItem>().enabled = true;
+        floatingItem.enabled = true;
     }
     
     public Portal OtherPortal

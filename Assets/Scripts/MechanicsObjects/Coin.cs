@@ -1,7 +1,15 @@
+using System;
 using UnityEngine;
 
 public class Coin : MechanicBehaviour
 {
+    private FloatingItem floatingItem;
+
+    private void Awake()
+    {
+        floatingItem = GetComponentInChildren<FloatingItem>();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag.Equals(Tags.Player))
@@ -19,11 +27,11 @@ public class Coin : MechanicBehaviour
 
     public override void OnEnterEditor()
     {
-        GetComponentInChildren<FloatingItem>().enabled = true;
+        floatingItem.enabled = true;
     }
 
     public override void OnEnterPlayMode()
     {
-        GetComponentInChildren<FloatingItem>().enabled = true;
+        floatingItem.enabled = true;
     }
 }
