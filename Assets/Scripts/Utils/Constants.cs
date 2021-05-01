@@ -10,6 +10,7 @@ public static class Names
     public static readonly string Viewport = "Viewport";
     public static readonly string Mesh = "Mesh";
     public static readonly string Wall = "Wall";
+    public static readonly string Walls = "Walls";
 }
 
 public static class Tags

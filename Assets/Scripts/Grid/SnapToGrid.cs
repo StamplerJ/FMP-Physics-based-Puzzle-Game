@@ -71,7 +71,6 @@ public class SnapToGrid : MonoBehaviour
     private void SnapToPosition(Vector3 position, GameObject hitObject)
     {
         Vector3 targetPos = grid.GetNearestPointOnGrid(position);
-        // targetPos += new Vector3(0f, transform.localScale.y / 2f, 0f);
         snapPosition = targetPos + offset;
 
         if (!hitObject.name.Equals(Names.Floor) && hitObject.gameObject != this.gameObject)
@@ -88,6 +87,18 @@ public class SnapToGrid : MonoBehaviour
         transform.position = Vector3.Lerp(transform.position, snapPosition, traveledTime);
     }
 
+    public void CorrectPosition()
+    {
+        Vector3 temp = transform.position;
+        temp.y = 0;
+        Vector3 targetPos = grid.GetNearestPointOnGrid(temp);
+        
+        snapPosition = targetPos + offset;
+        // snapPosition += new Vector3(0f, 0.02f, 0f);
+
+        traveledTime = 0f;  
+    }
+
     public Vector3 GetCenterPosition()
     {
         return transform.position - offset;
@@ -97,6 +108,12 @@ public class SnapToGrid : MonoBehaviour
     {
         get => isSelected;
         set => isSelected = value;
+    }
+
+    public Vector3 Offset
+    {
+        get => offset;
+        set => offset = value;
     }
 
     private void OnDrawGizmos()

@@ -9,7 +9,7 @@ public class SaveSystem : Singleton<SaveSystem>
     private Dictionary<SerializedMechanicObject, MechanicBehaviour> loadedGameObjects = new Dictionary<SerializedMechanicObject, MechanicBehaviour>();
     private int idCounter;
 
-    public void Save()
+    public void Save(string filename)
     {
         GridGenerator grid = GameObject.Find(Names.Grid).GetComponent<GridGenerator>(); // TODO: Can this be a singleton?
         Vector3Int gridDimension = new Vector3Int(grid.Width, grid.Height, grid.Depth);
@@ -24,12 +24,12 @@ public class SaveSystem : Singleton<SaveSystem>
             serializedMechanicObjects.Add(smo);
         }
         
-        DataSerializer.SaveGame(gridDimension, serializedMechanicObjects);
+        DataSerializer.SaveGame(filename, gridDimension, serializedMechanicObjects);
     }
 
-    public void Load()
+    public void Load(string filename)
     {
-        GameData data = DataSerializer.LoadGame();
+        GameData data = DataSerializer.LoadGame(filename);
 
         GridGenerator grid = GameObject.Find(Names.Grid).GetComponent<GridGenerator>(); // TODO: Can this be a singleton?
         grid.Width = data.width;

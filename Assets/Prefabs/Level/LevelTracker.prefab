@@ -71,3 +71,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1825a4ec7dd87004eb5e5bd22dee3fe3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPersistant: 0
+  items:
+  - {fileID: 11400000, guid: bd85305658299e64884cd38cc60d3b1d, type: 2}
+  - {fileID: 11400000, guid: 3c64ab79f79735443ab2eaf04f014e97, type: 2}
+  - {fileID: 11400000, guid: 9cc832d885172914a8d85ca8b8f3e183, type: 2}
+  - {fileID: 11400000, guid: 8f4e2c9ade7293642a8e3a1209d111d8, type: 2}
+  - {fileID: 11400000, guid: f9593afc947fe704c9bedae127defa2a, type: 2}
+  - {fileID: 11400000, guid: 6ce3eed4094a11944b440e082fdbb199, type: 2}
+  - {fileID: 11400000, guid: 8ea05bd564e1f124b885e57b1ef8a50e, type: 2}
+  - {fileID: 11400000, guid: 865075b1502fd8e46aa1a4ade8667ba5, type: 2}

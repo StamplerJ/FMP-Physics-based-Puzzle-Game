@@ -6,10 +6,12 @@ using UnityEngine;
 
 public static class DataSerializer
 {
-    public static void SaveGame(Vector3Int gridDimensions, List<SerializedMechanicObject> mechanicBehaviours)
+    public static void SaveGame(string filename, Vector3Int gridDimensions, List<SerializedMechanicObject> mechanicBehaviours)
     {
+        string path = Application.persistentDataPath + "/" + filename + ".data";
+        
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(Application.persistentDataPath + "/Level.data");
+        FileStream file = File.Create(path);
 
         GameData data = new GameData();
         data.width = gridDimensions.x;
@@ -22,12 +24,13 @@ public static class DataSerializer
         Debug.Log("Game data saved!");
     }
 
-    public static GameData LoadGame()
+    public static GameData LoadGame(string filename)
     {
-        if (File.Exists(Application.persistentDataPath + "/Level.data"))
+        string path = Application.persistentDataPath + "/" + filename + ".data";
+        if (File.Exists(path))
         {
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(Application.persistentDataPath + "/Level.data", FileMode.Open);
+            FileStream file = File.Open(path, FileMode.Open);
             GameData data = (GameData) bf.Deserialize(file);
             file.Close();
             Debug.Log("Game data loaded!");
