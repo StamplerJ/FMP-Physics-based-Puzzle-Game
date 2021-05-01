@@ -6,5 +6,6 @@
     Portal,
     Ramp,
     Redirector,
-    StartRamp
+    StartRamp,
+    Wall
 }

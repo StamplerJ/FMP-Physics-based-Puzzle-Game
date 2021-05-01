@@ -1969,6 +1969,46 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3198258106976561689, guid: d2801502ca9c1854d88e7476e5fc9ca0, type: 3}
+      propertyPath: coinPrefab
+      value: 
+      objectReference: {fileID: 7905183189033706685, guid: 73ee3a6bf95a7f644823efc67e260e32, type: 3}
+    - target: {fileID: 3198258106976561689, guid: d2801502ca9c1854d88e7476e5fc9ca0, type: 3}
+      propertyPath: items.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3198258106976561689, guid: d2801502ca9c1854d88e7476e5fc9ca0, type: 3}
+      propertyPath: items.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 9cc832d885172914a8d85ca8b8f3e183, type: 2}
+    - target: {fileID: 3198258106976561689, guid: d2801502ca9c1854d88e7476e5fc9ca0, type: 3}
+      propertyPath: items.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 3c64ab79f79735443ab2eaf04f014e97, type: 2}
+    - target: {fileID: 3198258106976561689, guid: d2801502ca9c1854d88e7476e5fc9ca0, type: 3}
+      propertyPath: items.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f4e2c9ade7293642a8e3a1209d111d8, type: 2}
+    - target: {fileID: 3198258106976561689, guid: d2801502ca9c1854d88e7476e5fc9ca0, type: 3}
+      propertyPath: items.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: f9593afc947fe704c9bedae127defa2a, type: 2}
+    - target: {fileID: 3198258106976561689, guid: d2801502ca9c1854d88e7476e5fc9ca0, type: 3}
+      propertyPath: items.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: 6ce3eed4094a11944b440e082fdbb199, type: 2}
+    - target: {fileID: 3198258106976561689, guid: d2801502ca9c1854d88e7476e5fc9ca0, type: 3}
+      propertyPath: items.Array.data[5]
+      value: 
+      objectReference: {fileID: 11400000, guid: bd85305658299e64884cd38cc60d3b1d, type: 2}
+    - target: {fileID: 3198258106976561689, guid: d2801502ca9c1854d88e7476e5fc9ca0, type: 3}
+      propertyPath: items.Array.data[6]
+      value: 
+      objectReference: {fileID: 11400000, guid: 8ea05bd564e1f124b885e57b1ef8a50e, type: 2}
+    - target: {fileID: 3198258106976561689, guid: d2801502ca9c1854d88e7476e5fc9ca0, type: 3}
+      propertyPath: items.Array.data[7]
+      value: 
+      objectReference: {fileID: 11400000, guid: 865075b1502fd8e46aa1a4ade8667ba5, type: 2}
     - target: {fileID: 5477370517042937439, guid: d2801502ca9c1854d88e7476e5fc9ca0, type: 3}
       propertyPath: m_Name
       value: LevelTracker
@@ -6060,9 +6100,13 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9077291515624609927, guid: 6743256e71610584692d93e9966f880c, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9077291516187469833, guid: 6743256e71610584692d93e9966f880c, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.08715324
+      value: -0.000020220876
       objectReference: {fileID: 0}
     - target: {fileID: 9077291516415410091, guid: 6743256e71610584692d93e9966f880c, type: 3}
       propertyPath: m_AnchorMax.x

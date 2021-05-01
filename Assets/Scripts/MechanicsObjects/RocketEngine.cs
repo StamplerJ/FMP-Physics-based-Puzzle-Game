@@ -34,6 +34,11 @@ public class RocketEngine : MechanicBehaviour
         return (front.transform.position - engine.transform.position).normalized;
     }
 
+    public override void OnLoad(SerializedMechanicObject smo)
+    {
+        //noop
+    }
+
     public override void OnEnterEditor()
     {
         //noop

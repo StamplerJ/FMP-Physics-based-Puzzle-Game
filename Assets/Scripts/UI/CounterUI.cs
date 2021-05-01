@@ -32,7 +32,7 @@ public class CounterUI : MonoBehaviour, ICounterListener
         }
     }
 
-    private void UpdateAmount()
+    public void UpdateAmount()
     {
         amount.text = counter.ToString();
     }

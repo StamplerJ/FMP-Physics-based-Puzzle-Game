@@ -1,3 +1,4 @@
+using System.Linq;
 using Grid;
 using UnityEngine;
 
@@ -13,9 +14,13 @@ public class Portal : MechanicBehaviour
     private FloatingItem floatingItem;
 
     private bool canTeleport = true;
+    private bool isFirstPortal = false;
+    private bool isLoaded = false;
 
     private void Awake()
     {
+        type = MechanicObjectType.Portal;
+        
         grid = GameObject.Find(Names.Grid).GetComponent<GridGenerator>(); // TODO: Can this be a singleton?
         mesh = transform.Find(Names.Mesh).gameObject;
         
@@ -52,6 +57,7 @@ public class Portal : MechanicBehaviour
     
     private void SetupPortals()
     {
+        isFirstPortal = true;
         createOtherPortal = false;
         
         glowingTextureRotation.GlowColor = Colors.Red;
@@ -86,6 +92,32 @@ public class Portal : MechanicBehaviour
         return null;
     }
     
+    public override void OnLoad(SerializedMechanicObject smo)
+    {
+        // First portal
+        if (smo.childIds != null && smo.childIds.Length > 0)
+        {
+            Portal other = FindOtherPortal(smo);
+            
+            isFirstPortal = true;
+            createOtherPortal = false;
+        
+            glowingTextureRotation.GlowColor = Colors.Red;
+            otherPortal = other;
+            
+            other.OtherPortal = this;
+            other.GetComponent<GlowingTextureRotation>().GlowColor = Colors.Blue;
+
+            isLoaded = true;
+        }
+        // Second portal
+        else if(!isLoaded)
+        {
+            createOtherPortal = false;
+            GetComponent<GlowingTextureRotation>().GlowColor = Colors.Blue;
+        }
+    }
+
     public override void OnEnterEditor()
     {
         floatingItem.enabled = true;
@@ -100,7 +132,38 @@ public class Portal : MechanicBehaviour
     {
         floatingItem.enabled = true;
     }
-    
+
+    public override SerializedMechanicObject GetSerializedMechanicObject()
+    {
+        SerializedMechanicObject smo = base.GetSerializedMechanicObject();
+
+        if (isFirstPortal)
+        {
+            smo.childIds = new[] {otherPortal.GetSerializedMechanicObject().id};
+        }
+
+        return smo;
+    }
+
+    private Portal FindOtherPortal(SerializedMechanicObject smo)
+    {
+        if (smo.childIds == null)
+            return null;
+        
+        foreach (MechanicBehaviour mb in SaveSystem.Instance.LoadedGameObjects.Values)
+        {
+            if (mb.ID == smo.childIds[0])
+            {
+                if (mb is Portal)
+                {
+                    return (Portal) mb;   
+                }
+            }
+        }
+
+        return null;
+    }
+
     public Portal OtherPortal
     {
         get => otherPortal;

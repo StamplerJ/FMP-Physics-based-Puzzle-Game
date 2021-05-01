@@ -183,4 +183,22 @@ public class GridGenerator : MonoBehaviour
                 Gizmos.DrawSphere(tile.transform.position, 0.1f);
         }
     }
+    
+    public int Width
+    {
+        get => width;
+        set => width = value;
+    }
+
+    public int Height
+    {
+        get => height;
+        set => height = value;
+    }
+
+    public int Depth
+    {
+        get => depth;
+        set => depth = value;
+    }
 }

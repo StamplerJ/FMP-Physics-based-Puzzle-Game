@@ -1,12 +1,19 @@
-using UnityEngine;
+using System;
 
+/// <summary>
+/// This class is just there so that the ramp can be saved
+/// </summary>
 public class Ramp : MechanicBehaviour
 {
-    [SerializeField] private Transform rocketSpawnPoint;
-    [SerializeField] private GameObject rocketPrefab;
-    [SerializeField] private bool spawnRocket = true;
+    private void Awake()
+    {
+        type = MechanicObjectType.Ramp;
+    }
 
-    private GameObject rocket;
+    public override void OnLoad(SerializedMechanicObject smo)
+    {
+        //noop
+    }
 
     public override void OnEnterEditor()
     {
@@ -15,8 +22,6 @@ public class Ramp : MechanicBehaviour
 
     public override void OnEnterPlayMode()
     {
-        rocket = Instantiate(rocketPrefab, rocketSpawnPoint.transform.position, transform.rotation * Quaternion.Euler(0f, 0f, 100f));
-            
-        CameraController.Instance.SetupRocket(rocket);
+        //noop
     }
 }

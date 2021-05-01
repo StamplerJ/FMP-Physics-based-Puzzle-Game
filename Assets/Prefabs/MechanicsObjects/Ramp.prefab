@@ -236,6 +236,7 @@ GameObject:
   - component: {fileID: 6577588383729396213}
   - component: {fileID: 4397693706173658863}
   - component: {fileID: 8362167131852491221}
+  - component: {fileID: 5513826474708581987}
   m_Layer: 0
   m_Name: Ramp
   m_TagString: Untagged
@@ -317,6 +318,18 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!114 &5513826474708581987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4043646523860100589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5e99d6ad5a7cc94c88ba55a43d2695a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2104734709561659703
 PrefabInstance:
   m_ObjectHideFlags: 0

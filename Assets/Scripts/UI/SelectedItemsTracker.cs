@@ -35,6 +35,10 @@ public class SelectedItemsTracker : Singleton<SelectedItemsTracker>
     {
         selectables.Add(selectable);
         selectable.UpdateSelection(setSelected);
-        UpdateSelectedItems(selectable);
+
+        if (setSelected)
+        {
+            UpdateSelectedItems(selectable);   
+        }
     }
 }

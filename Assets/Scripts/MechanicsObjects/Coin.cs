@@ -7,6 +7,8 @@ public class Coin : MechanicBehaviour
 
     private void Awake()
     {
+        type = MechanicObjectType.Coin;
+        
         floatingItem = GetComponentInChildren<FloatingItem>();
     }
 
@@ -23,6 +25,11 @@ public class Coin : MechanicBehaviour
     {
         // TODO: Play pickup sound
         Destroy(gameObject, 0.1f);
+    }
+
+    public override void OnLoad(SerializedMechanicObject smo)
+    {
+        //noop
     }
 
     public override void OnEnterEditor()

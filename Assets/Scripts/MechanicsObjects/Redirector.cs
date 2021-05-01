@@ -6,12 +6,15 @@ public class Redirector : MechanicBehaviour
     [SerializeField] private Vector3 direction;
     [SerializeField] private GameObject mesh;
 
+    private void Awake()
+    {
+        type = MechanicObjectType.Redirector;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag.Equals(Tags.Player))
         {
-            direction = mesh.transform.rotation * direction;
-            
             TurnRocket(other.gameObject);
         }
     }
@@ -20,8 +23,9 @@ public class Redirector : MechanicBehaviour
     {
         Vector3 centerPosition = GetComponent<SnapToGrid>().GetCenterPosition();
         rocket.transform.position = new Vector3(centerPosition.x, rocket.transform.position.y, centerPosition.z);
-        
-        Vector3 rot = new Vector3(rocket.transform.eulerAngles.x, Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg - 90f, rocket.transform.eulerAngles.z);
+    
+        Vector3 tempDirection = mesh.transform.rotation * direction;
+        Vector3 rot = new Vector3(rocket.transform.eulerAngles.x, Mathf.Atan2(tempDirection.x, tempDirection.z) * Mathf.Rad2Deg - 90f, rocket.transform.eulerAngles.z);
         rocket.transform.eulerAngles = rot;
 
         Rigidbody rb = rocket.GetComponent<Rigidbody>();
@@ -41,6 +45,11 @@ public class Redirector : MechanicBehaviour
         rb.velocity = dir * velocity.magnitude;
     }
     
+    public override void OnLoad(SerializedMechanicObject smo)
+    {
+        //noop
+    }
+
     public override void OnEnterEditor()
     {
         //noop

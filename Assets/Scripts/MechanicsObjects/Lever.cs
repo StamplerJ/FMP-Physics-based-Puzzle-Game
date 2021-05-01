@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Grid;
 using UnityEngine;
 
@@ -15,6 +16,8 @@ public class Lever : MechanicBehaviour, ICounterListener
 
     private void Awake()
     {
+        type = MechanicObjectType.Lever;
+        
         grid = GameObject.Find(Names.Grid).GetComponent<GridGenerator>(); // TODO: Can this be a singleton?
         mesh = transform.Find(Names.Mesh).gameObject;
         counterUI.Listener = this;
@@ -100,6 +103,34 @@ public class Lever : MechanicBehaviour, ICounterListener
         }
 
         return false;
+    }
+
+    public override void OnLoad(SerializedMechanicObject smo)
+    {
+        // First portal
+        if (smo.childIds != null && smo.childIds.Length > 0)
+        {
+            Wall[] walls = FindObjectsOfType<Wall>();
+            foreach (Wall wall in walls)
+            {
+                if (smo.childIds.Contains(wall.ID))
+                {
+                    this.walls.Add(wall.gameObject);
+                }
+            }
+        }
+
+        counterUI.Counter = walls.Count;
+        counterUI.UpdateAmount();
+    }
+
+    public override SerializedMechanicObject GetSerializedMechanicObject()
+    {
+        SerializedMechanicObject smo = base.GetSerializedMechanicObject();
+
+        smo.childIds = walls.Select(go => go.GetComponent<MechanicBehaviour>().ID).ToArray();
+
+        return smo;
     }
 
     public bool IsOn

@@ -19,6 +19,7 @@ public class EnterPlayMode : MonoBehaviour
         else
         {
             buttonText.text = "Play";
+            FindObjectsOfType<MechanicBehaviour>().ToList().ForEach(behaviour => behaviour.OnEnterEditor());
         }
     }
 }
