@@ -13,6 +13,11 @@ public class LevelTracker : Singleton<LevelTracker>
     {
         base.Awake();
 
+        SetupLevel();
+    }
+
+    public void SetupLevel()
+    {
         if (GameObject.Find(Names.InGameCanvas))
         {
             coinText = GameObject.Find(Names.CoinText)?.GetComponent<Text>();

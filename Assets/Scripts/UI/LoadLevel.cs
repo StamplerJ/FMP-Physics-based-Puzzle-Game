@@ -9,8 +9,7 @@ public class LoadLevel : MonoBehaviour
 {
     [SerializeField] private Text text;
     [SerializeField] private string level;
-
-    private bool isPremade;
+    [SerializeField] private bool isPremade;
     
     public void OnLoadLevel()
     {
@@ -20,7 +19,10 @@ public class LoadLevel : MonoBehaviour
         }
         else
         {
+            PlayerPrefs.SetString(Names.SelectedLevel, level);
+            PlayerPrefs.Save();
             
+            SceneManager.LoadScene(Names.DefaultLevel);
         }
     }
 

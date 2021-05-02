@@ -17,14 +17,14 @@ public class CameraController : Singleton<CameraController>
         camera = GetComponentInChildren<Camera>();
     }
 
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.A))
-            ShowTopDown();
-        
-        if(Input.GetKeyDown(KeyCode.D))
-            ShowThirdPerson();
-    }
+    // private void Update()
+    // {
+    //     if(Input.GetKeyDown(KeyCode.A))
+    //         ShowTopDown();
+    //     
+    //     if(Input.GetKeyDown(KeyCode.D))
+    //         ShowThirdPerson();
+    // }
 
     public void SetupRocket(GameObject rocket)
     {

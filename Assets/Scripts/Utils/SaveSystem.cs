@@ -52,7 +52,7 @@ public class SaveSystem : Singleton<SaveSystem>
         foreach (KeyValuePair<SerializedMechanicObject,MechanicBehaviour> pair in loadedGameObjects)
         {
             pair.Value.OnLoad(pair.Key);
-            pair.Value.OnEnterPlayMode();
+            pair.Value.OnEnterEditor();
         }
     }
 

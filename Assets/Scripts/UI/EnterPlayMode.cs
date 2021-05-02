@@ -2,7 +2,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EnterPlayMode : MonoBehaviour
+public class EnterPlayMode : Singleton<EnterPlayMode>
 {
     [SerializeField] private Text buttonText;
     private bool isPlayMode;
@@ -14,12 +14,24 @@ public class EnterPlayMode : MonoBehaviour
         if (isPlayMode)
         {
             buttonText.text = "Editor";
+
             FindObjectsOfType<MechanicBehaviour>().ToList().ForEach(behaviour => behaviour.OnEnterPlayMode());
+            
+            CameraController.Instance.ShowThirdPerson();
         }
         else
         {
             buttonText.text = "Play";
+
             FindObjectsOfType<MechanicBehaviour>().ToList().ForEach(behaviour => behaviour.OnEnterEditor());
+            
+            CameraController.Instance.ShowTopDown();
         }
+    }
+
+    public bool IsPlayMode
+    {
+        get => isPlayMode;
+        set => isPlayMode = value;
     }
 }

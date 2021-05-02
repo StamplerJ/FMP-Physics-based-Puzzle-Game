@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class StartingRamp : MechanicBehaviour, IRotationListener
@@ -38,7 +39,7 @@ public class StartingRamp : MechanicBehaviour, IRotationListener
     public override void OnEnterPlayMode()
     {
         rocket = Instantiate(rocketPrefab, rocketSpawnPoint.transform.position, mesh.transform.rotation * Quaternion.Euler(0f, 0f, 100f));
-            
+
         CameraController.Instance.SetupRocket(rocket);
     }
 

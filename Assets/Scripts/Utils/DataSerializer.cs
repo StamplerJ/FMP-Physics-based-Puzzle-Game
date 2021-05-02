@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
@@ -26,7 +27,8 @@ public static class DataSerializer
 
     public static GameData LoadGame(string filename)
     {
-        string path = Application.persistentDataPath + "/" + filename + ".data";
+        string path = Application.persistentDataPath + "/" + filename;
+        Debug.Log(path);
         if (File.Exists(path))
         {
             BinaryFormatter bf = new BinaryFormatter();
