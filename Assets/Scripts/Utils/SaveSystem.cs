@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class SaveSystem : Singleton<SaveSystem>
@@ -53,6 +54,20 @@ public class SaveSystem : Singleton<SaveSystem>
             pair.Value.OnLoad(pair.Key);
             pair.Value.OnEnterPlayMode();
         }
+    }
+
+    public List<string> GetCustomLevels()
+    {
+        List<string> levels = new List<string>();
+        
+        DirectoryInfo info = new DirectoryInfo(Application.persistentDataPath);
+        FileInfo[] fileInfos = info.GetFiles();
+        foreach (FileInfo fileInfo in fileInfos)
+        {
+            levels.Add(fileInfo.Name);
+        }
+
+        return levels;
     }
 
     private MechanicBehaviour LoadMechanicalObject(MechanicObjectType type, SerializedMechanicObject smo)
