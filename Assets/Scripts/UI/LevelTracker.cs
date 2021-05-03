@@ -9,6 +9,8 @@ public class LevelTracker : Singleton<LevelTracker>
 
     private Text coinText;
 
+    private bool isLevelFinished;
+
     public override void Awake()
     {
         base.Awake();
@@ -44,7 +46,18 @@ public class LevelTracker : Singleton<LevelTracker>
         }
     }
 
+    public float GetCollectedPercentage()
+    {
+        return (float) coinCounter / coinMax;
+    }
+
     public int CoinMax => coinMax;
 
     public int CoinCounter => coinCounter;
+
+    public bool IsLevelFinished
+    {
+        get => isLevelFinished;
+        set => isLevelFinished = value;
+    }
 }

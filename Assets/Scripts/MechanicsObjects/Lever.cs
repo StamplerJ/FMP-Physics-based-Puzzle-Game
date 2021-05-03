@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using Grid;
 using UnityEngine;
 
@@ -12,7 +13,7 @@ public class Lever : MechanicBehaviour, ICounterListener
     private GridGenerator grid;
     private GameObject mesh;
 
-    private bool isOn;
+    private bool isOn = true;
 
     private void Awake()
     {
@@ -21,6 +22,7 @@ public class Lever : MechanicBehaviour, ICounterListener
         grid = GameObject.Find(Names.Grid).GetComponent<GridGenerator>(); // TODO: Can this be a singleton?
         mesh = transform.Find(Names.Mesh).gameObject;
         counterUI.Listener = this;
+        counterUI.Counter = walls.Count;
     }
 
     private void OnTriggerEnter(Collider other)

@@ -54,6 +54,9 @@ public class SaveSystem : Singleton<SaveSystem>
             pair.Value.OnLoad(pair.Key);
             pair.Value.OnEnterEditor();
         }
+        
+        // Default 
+        SelectedItemsTracker.Instance.Initialise();
     }
 
     public List<string> GetCustomLevels()

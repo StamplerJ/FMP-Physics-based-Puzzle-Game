@@ -4,6 +4,8 @@ public class Selectable : MonoBehaviour
 {
     private GameObject onObjectCanvas;
     private Outline outline;
+
+    private ISelectionListener listener;
     
     private bool isSelected = false;
 
@@ -37,11 +39,16 @@ public class Selectable : MonoBehaviour
         {
             outline.enabled = isSelected;
         }
-        
-        if (onObjectCanvas == null)
-            return;
-        
-        onObjectCanvas.SetActive(isSelected);
+
+        if (onObjectCanvas != null)
+        {
+            onObjectCanvas.SetActive(isSelected);   
+        }
+
+        if (listener != null)
+        {
+            listener.OnSelected();
+        }
     }
 
     public bool IsSelected => isSelected;

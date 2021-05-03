@@ -19,9 +19,12 @@ public class LoadLevel : MonoBehaviour
         }
         else
         {
-            PlayerPrefs.SetString(Names.SelectedLevel, level);
-            PlayerPrefs.Save();
-            
+            if (level.Length > 0)
+            {
+                PlayerPrefs.SetString(Names.SelectedLevel, level);
+                PlayerPrefs.Save();   
+            }
+
             SceneManager.LoadScene(Names.DefaultLevel);
         }
     }
@@ -30,6 +33,9 @@ public class LoadLevel : MonoBehaviour
     {
         this.level = levelName;
         this.isPremade = isPremade;
+
+        if (text == null)
+            return;
         
         if (isPremade)
         {

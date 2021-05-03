@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class Goal : MechanicBehaviour
@@ -14,12 +13,16 @@ public class Goal : MechanicBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        print("Goal reached!");
+        if (!LevelTracker.Instance.IsLevelFinished)
+        {
+            LevelTracker.Instance.IsLevelFinished = true;
+            MenuVictory.Instance.ShowMenu();   
+        }
     }
 
     public override void OnLoad(SerializedMechanicObject smo)
     {
-        //noop
+        isEditable = false;
     }
     
     public override void OnEnterEditor()

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Wall
   m_EditorClassIdentifier: 
   type: 7
-  image: {fileID: 21300000, guid: af4e876bd34064a46a1885e356dd9d31, type: 3}
+  image: {fileID: 21300000, guid: feba6a51d2cd45c49af483bfe3e59be0, type: 3}
   prefab: {fileID: 7055181065841843248, guid: a3e490f1acf7aaa49ae810b2cebb8c7e, type: 3}

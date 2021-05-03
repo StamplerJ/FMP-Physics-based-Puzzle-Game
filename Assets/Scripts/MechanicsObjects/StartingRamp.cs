@@ -1,5 +1,4 @@
 using System;
-using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class StartingRamp : MechanicBehaviour, IRotationListener
@@ -25,7 +24,7 @@ public class StartingRamp : MechanicBehaviour, IRotationListener
 
     public override void OnLoad(SerializedMechanicObject smo)
     {
-        //noop
+        isEditable = false;
     }
 
     public override void OnEnterEditor()

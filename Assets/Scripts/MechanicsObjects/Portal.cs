@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Grid;
 using UnityEngine;
@@ -26,6 +27,14 @@ public class Portal : MechanicBehaviour
         
         glowingTextureRotation = GetComponent<GlowingTextureRotation>();
         floatingItem = GetComponentInChildren<FloatingItem>();
+    }
+
+    private void Start()
+    {
+        if (createOtherPortal)
+        {
+            SetupPortals();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -121,8 +130,8 @@ public class Portal : MechanicBehaviour
     public override void OnEnterEditor()
     {
         floatingItem.enabled = true;
-        
-        if (createOtherPortal)
+
+        if (otherPortal == null)
         {
             SetupPortals();
         }

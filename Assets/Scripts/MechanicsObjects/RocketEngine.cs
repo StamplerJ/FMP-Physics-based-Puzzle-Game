@@ -20,6 +20,9 @@ public class RocketEngine : MechanicBehaviour
     
     void FixedUpdate()
     {
+        if(LevelTracker.Instance.IsLevelFinished)
+            return;
+        
         if (Input.GetKey(KeyCode.Space))
         {
             rigidbody.AddForce(GetDirection() * speed);

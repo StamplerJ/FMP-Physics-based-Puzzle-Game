@@ -17,6 +17,7 @@ public class EnterPlayMode : Singleton<EnterPlayMode>
 
             FindObjectsOfType<MechanicBehaviour>().ToList().ForEach(behaviour => behaviour.OnEnterPlayMode());
             
+            SelectedItemsTracker.Instance.UpdateSelectedItems(null);
             CameraController.Instance.ShowThirdPerson();
         }
         else

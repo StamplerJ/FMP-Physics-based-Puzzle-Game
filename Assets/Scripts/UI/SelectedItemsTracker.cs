@@ -5,15 +5,15 @@ public class SelectedItemsTracker : Singleton<SelectedItemsTracker>
 {
     private List<Selectable> selectables;
 
-    public override void Awake()
-    {
-        base.Awake();
-
-        selectables = FindObjectsOfType<Selectable>().ToList();
-    }
-
     private void Start()
     {
+        Initialise();
+    }
+
+    public void Initialise()
+    {
+        selectables = FindObjectsOfType<Selectable>().ToList();
+        
         // Default all to false
         UpdateSelectedItems(null);
     }

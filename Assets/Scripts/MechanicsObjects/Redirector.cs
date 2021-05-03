@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class Redirector : MechanicBehaviour
@@ -18,7 +19,7 @@ public class Redirector : MechanicBehaviour
             TurnRocket(other.gameObject);
         }
     }
-
+    
     private void TurnRocket(GameObject rocket)
     {
         Vector3 centerPosition = GetComponent<SnapToGrid>().GetCenterPosition();
@@ -27,7 +28,7 @@ public class Redirector : MechanicBehaviour
         Vector3 tempDirection = mesh.transform.rotation * direction;
         Vector3 rot = new Vector3(rocket.transform.eulerAngles.x, Mathf.Atan2(tempDirection.x, tempDirection.z) * Mathf.Rad2Deg - 90f, rocket.transform.eulerAngles.z);
         rocket.transform.eulerAngles = rot;
-
+        
         Rigidbody rb = rocket.GetComponent<Rigidbody>();
         
         Vector3 velocity = rb.velocity;
@@ -42,7 +43,10 @@ public class Redirector : MechanicBehaviour
         dir.y = Math.Abs(dir.y) < 0.9f ? 0f : dir.y;
         dir.z = Math.Abs(dir.z) < 0.9f ? 0f : dir.z;
         
-        rb.velocity = dir * velocity.magnitude;
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+        
+        rb.AddForce(dir * velocity.magnitude, ForceMode.VelocityChange);
     }
     
     public override void OnLoad(SerializedMechanicObject smo)

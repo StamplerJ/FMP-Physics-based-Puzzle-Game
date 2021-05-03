@@ -10,6 +10,7 @@ public abstract class MechanicBehaviour : MonoBehaviour
 {
     protected int id;
     protected MechanicObjectType type;
+    protected bool isEditable;
 
     protected SerializedMechanicObject mechanicObject = new SerializedMechanicObject();
 
