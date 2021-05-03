@@ -7,9 +7,11 @@ using UnityEngine;
 
 public static class DataSerializer
 {
+    public static readonly string LevelFolder = Application.persistentDataPath + "/Levels/";
+    
     public static void SaveGame(string filename, Vector3Int gridDimensions, List<SerializedMechanicObject> mechanicBehaviours)
     {
-        string path = Application.persistentDataPath + "/" + filename + ".data";
+        string path = LevelFolder + filename + ".data";
         
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(path);
@@ -27,7 +29,7 @@ public static class DataSerializer
 
     public static GameData LoadGame(string filename)
     {
-        string path = Application.persistentDataPath + "/" + filename;
+        string path = LevelFolder + filename;
         Debug.Log(path);
         if (File.Exists(path))
         {

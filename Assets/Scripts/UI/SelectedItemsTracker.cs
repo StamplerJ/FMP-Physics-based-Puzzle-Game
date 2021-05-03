@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -5,9 +6,17 @@ public class SelectedItemsTracker : Singleton<SelectedItemsTracker>
 {
     private List<Selectable> selectables;
 
+    public override void Awake()
+    {
+        base.Awake();
+        
+        selectables = FindObjectsOfType<Selectable>().ToList();
+    }
+
     private void Start()
     {
-        Initialise();
+        // Default all to false
+        UpdateSelectedItems(null);
     }
 
     public void Initialise()

@@ -1,4 +1,5 @@
 using UnityEngine;
+using Utils;
 
 public class Selectable : MonoBehaviour
 {
@@ -6,7 +7,7 @@ public class Selectable : MonoBehaviour
     private Outline outline;
 
     private ISelectionListener listener;
-    
+
     private bool isSelected = false;
 
     private void Awake()
@@ -32,7 +33,7 @@ public class Selectable : MonoBehaviour
             }
         }
     }
-    
+
     public void UpdateSelection(bool isSelected)
     {
         if (outline != null)
@@ -42,7 +43,7 @@ public class Selectable : MonoBehaviour
 
         if (onObjectCanvas != null)
         {
-            onObjectCanvas.SetActive(isSelected);   
+            onObjectCanvas.SetActive(isSelected);
         }
 
         if (listener != null)

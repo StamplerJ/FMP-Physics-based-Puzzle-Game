@@ -43,7 +43,10 @@ public class LoadLevel : MonoBehaviour
         }
         else
         {
-            text.text = levelName.Substring(0, levelName.IndexOf(".data", StringComparison.Ordinal));
+            if (levelName.Length > 0)
+            {
+                text.text = levelName.Substring(0, levelName.IndexOf(".data", StringComparison.Ordinal));   
+            }
         }
     }
 }

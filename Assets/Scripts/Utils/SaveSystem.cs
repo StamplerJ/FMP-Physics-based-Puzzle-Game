@@ -63,7 +63,7 @@ public class SaveSystem : Singleton<SaveSystem>
     {
         List<string> levels = new List<string>();
         
-        DirectoryInfo info = new DirectoryInfo(Application.persistentDataPath);
+        DirectoryInfo info = new DirectoryInfo(DataSerializer.LevelFolder);
         FileInfo[] fileInfos = info.GetFiles();
         foreach (FileInfo fileInfo in fileInfos)
         {
