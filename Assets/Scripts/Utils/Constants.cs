@@ -13,6 +13,9 @@ public static class Names
     public static readonly string Walls = "Walls";
     public static readonly string DefaultLevel = "DefaultLevel";
     public static readonly string SelectedLevel = "SelectedLevel";
+    public static readonly string LevelEditorCanvas = "LevelEditorCanvas";
+    public static readonly string CoinAudioSource = "CoinAudioSource";
+    public static readonly string ClickAudioSource = "ClickAudioSource";
 }
 
 public static class Tags

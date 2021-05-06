@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using Utils;
 
 public class Selectable : MonoBehaviour
@@ -19,6 +20,9 @@ public class Selectable : MonoBehaviour
 
     void Update()
     {
+        if (EventSystem.current.IsPointerOverGameObject())
+            return;
+        
         if (Input.GetMouseButtonDown(0))
         {
             RaycastHit hit;

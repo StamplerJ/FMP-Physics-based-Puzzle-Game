@@ -1,15 +1,19 @@
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class EnterPlayMode : Singleton<EnterPlayMode>
 {
+    [SerializeField] private List<GameObject> hideOnPlayObjects;
     [SerializeField] private Text buttonText;
     private bool isPlayMode;
     
     public void OnButtonClick()
     {
         isPlayMode = !isPlayMode;
+        
+        hideOnPlayObjects.ForEach(o => o.SetActive(!isPlayMode));
         
         if (isPlayMode)
         {

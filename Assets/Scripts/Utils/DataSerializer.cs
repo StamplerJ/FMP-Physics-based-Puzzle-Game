@@ -11,6 +11,13 @@ public static class DataSerializer
     
     public static void SaveGame(string filename, Vector3Int gridDimensions, List<SerializedMechanicObject> mechanicBehaviours)
     {
+        DirectoryInfo info = new DirectoryInfo(LevelFolder);
+
+        if (!info.Exists)
+        {
+            Directory.CreateDirectory(LevelFolder);
+        }
+        
         string path = LevelFolder + filename + ".data";
         
         BinaryFormatter bf = new BinaryFormatter();

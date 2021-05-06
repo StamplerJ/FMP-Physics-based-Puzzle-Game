@@ -31,6 +31,7 @@ public class StartingRamp : MechanicBehaviour, IRotationListener
     {
         if (rocket != null)
         {
+            rocket.GetComponent<MechanicBehaviour>().OnEnterEditor();
             Destroy(rocket);
         }
     }
@@ -38,7 +39,8 @@ public class StartingRamp : MechanicBehaviour, IRotationListener
     public override void OnEnterPlayMode()
     {
         rocket = Instantiate(rocketPrefab, rocketSpawnPoint.transform.position, mesh.transform.rotation * Quaternion.Euler(0f, 0f, 100f));
-
+        rocket.GetComponent<MechanicBehaviour>().OnEnterPlayMode();
+        
         CameraController.Instance.SetupRocket(rocket);
     }
 

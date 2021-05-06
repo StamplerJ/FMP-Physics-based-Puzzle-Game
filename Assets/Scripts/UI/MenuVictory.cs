@@ -8,6 +8,8 @@ public class MenuVictory : Singleton<MenuVictory>
     [SerializeField] private Text coinAmount;
 
     private readonly float[] rewardPercentages = {0.33f, 0.5f, 0.9f};
+
+    private bool isLevelPerfectOnce;
     
     public void ShowMenu()
     {
@@ -19,6 +21,11 @@ public class MenuVictory : Singleton<MenuVictory>
             stars[i].SetActive(true);
         }
 
+        if (!IsLevelPerfectOnce && achieved == 3)
+        {
+            IsLevelPerfectOnce = true;
+        }
+
         coinAmount.text = LevelTracker.Instance.CoinCounter.ToString();
     }
 
@@ -28,8 +35,6 @@ public class MenuVictory : Singleton<MenuVictory>
 
         float collected = LevelTracker.Instance.GetCollectedPercentage();
 
-        print(collected);
-        
         foreach (float percentage in rewardPercentages)
         {
             if (collected >= percentage)
@@ -39,5 +44,11 @@ public class MenuVictory : Singleton<MenuVictory>
         }
 
         return stars;
+    }
+
+    public bool IsLevelPerfectOnce
+    {
+        get => isLevelPerfectOnce;
+        set => isLevelPerfectOnce = value;
     }
 }

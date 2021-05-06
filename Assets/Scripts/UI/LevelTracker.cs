@@ -42,12 +42,15 @@ public class LevelTracker : Singleton<LevelTracker>
     {
         if (coinText != null)
         {
-            coinText.text = $"Coins: {coinCounter}/{coinMax}";   
+            coinText.text = coinCounter.ToString();   
         }
     }
 
     public float GetCollectedPercentage()
     {
+        if (coinMax == 0)
+            return 1f;
+        
         return (float) coinCounter / coinMax;
     }
 

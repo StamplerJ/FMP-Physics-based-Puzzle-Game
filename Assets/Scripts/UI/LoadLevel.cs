@@ -10,9 +10,21 @@ public class LoadLevel : MonoBehaviour
     [SerializeField] private Text text;
     [SerializeField] private string level;
     [SerializeField] private bool isPremade;
+
+    private AudioSource audioSource;
     
+    private void Awake()
+    {
+        audioSource = GameObject.Find(Names.ClickAudioSource)?.GetComponent<AudioSource>();
+    }
+
     public void OnLoadLevel()
     {
+        if (audioSource != null)
+        {
+            audioSource.Play();
+        }
+        
         if (isPremade)
         {
             SceneManager.LoadScene(level);   

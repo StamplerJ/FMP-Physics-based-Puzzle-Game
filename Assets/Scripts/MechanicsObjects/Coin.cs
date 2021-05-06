@@ -3,13 +3,23 @@ using UnityEngine;
 
 public class Coin : MechanicBehaviour
 {
+    [SerializeField] private GameObject mesh;
+    
     private FloatingItem floatingItem;
+    private AudioSource audioSource;
+    private BoxCollider hitBox;
 
+    private bool isInEditor;
+    
     private void Awake()
     {
         type = MechanicObjectType.Coin;
         
         floatingItem = GetComponentInChildren<FloatingItem>();
+        audioSource = GameObject.Find(Names.CoinAudioSource)?.GetComponent<AudioSource>();
+        hitBox = GetComponent<BoxCollider>();
+
+        isInEditor = GameObject.Find(Names.LevelEditorCanvas) != null; // TODO: Find a better solution
     }
 
     private void OnTriggerEnter(Collider other)
@@ -23,8 +33,17 @@ public class Coin : MechanicBehaviour
 
     private void PlayPickupAnimation()
     {
-        // TODO: Play pickup sound
-        Destroy(gameObject, 0.1f);
+        audioSource.Play();
+
+        if (isInEditor)
+        {
+            mesh.SetActive(false);
+            hitBox.enabled = false;
+        }
+        else
+        {
+            Destroy(gameObject, 0.1f);   
+        }
     }
 
     public override void OnLoad(SerializedMechanicObject smo)
@@ -34,6 +53,9 @@ public class Coin : MechanicBehaviour
 
     public override void OnEnterEditor()
     {
+        mesh.SetActive(true);
+        hitBox.enabled = true;
+        
         floatingItem.enabled = true;
     }
 

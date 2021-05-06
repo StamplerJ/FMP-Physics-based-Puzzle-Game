@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class SnapToGrid : MonoBehaviour
 {
@@ -24,7 +25,7 @@ public class SnapToGrid : MonoBehaviour
     {
         if (!isMovable)
             return;
-        
+
         if (Input.GetMouseButtonDown(0))
         {
             RaycastHit hit;

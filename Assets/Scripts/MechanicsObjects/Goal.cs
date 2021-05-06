@@ -3,20 +3,30 @@ using UnityEngine;
 public class Goal : MechanicBehaviour
 {
     private FloatingItem floatingItem;
-
+    private AudioSource audioSource;
+    
     private void Awake()
     {
         type = MechanicObjectType.Goal;
         
         floatingItem = GetComponentInChildren<FloatingItem>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!LevelTracker.Instance.IsLevelFinished)
+        if (other.tag.Equals(Tags.Player))
         {
-            LevelTracker.Instance.IsLevelFinished = true;
-            MenuVictory.Instance.ShowMenu();   
+            if (!LevelTracker.Instance.IsLevelFinished)
+            {
+                LevelTracker.Instance.IsLevelFinished = true;
+                FuelBar.Instance.Hide();
+                MenuVictory.Instance.ShowMenu();
+
+                other.gameObject.GetComponent<RocketEngine>().Fuel = 0f;
+                
+                audioSource.Play();
+            }
         }
     }
 

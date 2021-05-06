@@ -64,6 +64,13 @@ public class SaveSystem : Singleton<SaveSystem>
         List<string> levels = new List<string>();
         
         DirectoryInfo info = new DirectoryInfo(DataSerializer.LevelFolder);
+
+        if (!info.Exists)
+        {
+            Directory.CreateDirectory(DataSerializer.LevelFolder);
+            return new List<string>();
+        }
+        
         FileInfo[] fileInfos = info.GetFiles();
         foreach (FileInfo fileInfo in fileInfos)
         {
