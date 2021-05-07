@@ -16,6 +16,7 @@ public class Redirector : MechanicBehaviour
     {
         if (other.tag.Equals(Tags.Player))
         {
+            print("TurnRocket");
             TurnRocket(other.gameObject);
         }
     }
@@ -42,7 +43,7 @@ public class Redirector : MechanicBehaviour
         dir.x = Math.Abs(dir.x) < 0.9f ? 0f : dir.x;
         dir.y = Math.Abs(dir.y) < 0.9f ? 0f : dir.y;
         dir.z = Math.Abs(dir.z) < 0.9f ? 0f : dir.z;
-        
+
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         

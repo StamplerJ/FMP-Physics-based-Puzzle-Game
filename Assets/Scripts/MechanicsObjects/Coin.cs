@@ -34,7 +34,7 @@ public class Coin : MechanicBehaviour
     private void PlayPickupAnimation()
     {
         audioSource.Play();
-
+        
         if (isInEditor)
         {
             mesh.SetActive(false);
